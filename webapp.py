@@ -5,20 +5,10 @@ import numpy as np
 import cv2
 from keras.models import model_from_json
 import pandas as pd
-
-# from matplotlib import pyplot as plt 
-
-
 import SessionState
-
-# import streamlit as st
-import pickle as pkle
 import os.path
 import os
 import streamlit as st
-
-# global loged
-# loged = False
 
 
 
@@ -187,7 +177,7 @@ def change(loged = False, next_clicked = 0, choice = 'Home'):#do chioce = 'Home'
   # if(loged == False):
   # if next_clicked == 0 and loged == False:
   choice = st.sidebar.radio("",('Home','Login','New User','Predict','About'), index=next_clicked)
-  pkle.dump(new_choice.index(choice), open('next.p', 'wb'))
+  # pkle.dump(new_choice.index(choice), open('next.p', 'wb'))
 
 
   # pickle the index associated with the value, to keep track if the radio button has been used
@@ -244,11 +234,25 @@ def home():
   st.text("")
   df1 = pd.read_excel("forBar.xlsx").set_index('Common Types of Cancer')
 
+  # df2 = pd.DataFrame({
+    # 'index': ['Cincinnati', 'San Francisco', 'Pittsburgh'],
+    # 'sports_teams': [6, 8, 9],
+# }).set_index('index')
+
+  # df1.index = df['Common Types of Cancer']
+  # st.write(df1.index)
   st.bar_chart(df1)
   st.text("")
   st.write("In 2020, it is estimated that there will be 60,530 new cases of leukemia and an\
   estimated 23,100 people will die of this disease.")
+#   # 60530,23100
 
+  # labels = ['Survive','Deaths'] 
+  # sizes = [37430,23100] 
+  # explode = (0.1,0)
+  # plt.pie(sizes,explode = explode, labels = labels, shadow = True)
+  # cols = st.beta_columns(4)
+  # cols[0].pyplot(plt)
   st.header("Survivability")
   st.write("elative survival is an estimate of the percentage of patients who would be expected to survive the \
     effects of their cancer. It excludes the risk of dying from other causes. Because survival statistics are based\
@@ -256,7 +260,9 @@ def home():
     two patients are entirely alike, and treatment and responses to treatment can vary greatly.")
   show = Image.open("stats\\1.PNG")
   st.image(show,use_column_width = True)
-
+  # st.header("")
+  # original = Image.open("stats\\"+str(i)+".PNG")
+  # st.image(original)
   df3 = pd.read_excel("forBar.xlsx",sheet_name = '02').set_index ('Year')
   # st.write(df3)
   st.subheader("Data over past years")
@@ -405,6 +411,4 @@ def About():
      for Image/Signal Processing and Hardware Security.</body>",unsafe_allow_html=True)
   
 
-# home()
-# About()
 change()
