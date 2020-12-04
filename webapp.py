@@ -6,7 +6,7 @@ import cv2
 from keras.models import model_from_json
 import pandas as pd
 
-from matplotlib import pyplot as plt 
+# from matplotlib import pyplot as plt 
 
 
 import SessionState
@@ -244,25 +244,11 @@ def home():
   st.text("")
   df1 = pd.read_excel("forBar.xlsx").set_index('Common Types of Cancer')
 
-  # df2 = pd.DataFrame({
-    # 'index': ['Cincinnati', 'San Francisco', 'Pittsburgh'],
-    # 'sports_teams': [6, 8, 9],
-# }).set_index('index')
-
-  # df1.index = df['Common Types of Cancer']
-  # st.write(df1.index)
   st.bar_chart(df1)
   st.text("")
   st.write("In 2020, it is estimated that there will be 60,530 new cases of leukemia and an\
   estimated 23,100 people will die of this disease.")
-#   # 60530,23100
 
-  # labels = ['Survive','Deaths'] 
-  # sizes = [37430,23100] 
-  # explode = (0.1,0)
-  # plt.pie(sizes,explode = explode, labels = labels, shadow = True)
-  # cols = st.beta_columns(4)
-  # cols[0].pyplot(plt)
   st.header("Survivability")
   st.write("elative survival is an estimate of the percentage of patients who would be expected to survive the \
     effects of their cancer. It excludes the risk of dying from other causes. Because survival statistics are based\
@@ -270,9 +256,7 @@ def home():
     two patients are entirely alike, and treatment and responses to treatment can vary greatly.")
   show = Image.open("stats\\1.PNG")
   st.image(show,use_column_width = True)
-  # st.header("")
-  # original = Image.open("stats\\"+str(i)+".PNG")
-  # st.image(original)
+
   df3 = pd.read_excel("forBar.xlsx",sheet_name = '02').set_index ('Year')
   # st.write(df3)
   st.subheader("Data over past years")
@@ -420,229 +404,7 @@ def About():
     in September 2017. His research interests include Low Power VLSI Design, Energy Efficient Architectures\
      for Image/Signal Processing and Hardware Security.</body>",unsafe_allow_html=True)
   
-  # cols[2].write(f'{i * i * i}')
-  # cols[3].write('x' * i)
-# def change(loged = False, next_clicked = 0, choice = 'Home'):#do chioce = 'Home'
-#   # create a button in the side bar that will move to the next page/radio button choice
-#   # next = st.sidebar.button('Next on list')
-
-#   # will use this list and next button to increment page, MUST BE in the SAME order
-#   # as the list passed to the radio button
-  
-#   new_choice = ['Home','Login','New User','Predict','About']
-
-#   # This is what makes this work, check directory for a pickled file that contains
-#   # the index of the page you want displayed, if it exists, then you pick up where the
-#   #previous run through of your Streamlit Script left off,
-#   # if it's the first go it's just set to 0
-#   # if os.path.isfile('next.p'):
-#   #     next_clicked = pkle.load(open('next.p', 'rb'))
-#   #     # check if you are at the end of the list of pages
-#   #     if next_clicked == len(new_choice):
-#   #         next_clicked = 0 # go back to the beginning i.e. homepage
-#   # else:
-#   #     next_clicked = 0 #the start
-#   # next_clicked = 0
-#   # this is the second tricky bit, check to see if the person has clicked the
-#   # next button and increment our index tracker (next_clicked)
-#   # if next:
-#   #     #increment value to get to the next page
-#   #     next_clicked = next_clicked +1
-
-#   #     # check if you are at the end of the list of pages again
-#   #     if next_clicked == len(new_choice):
-#   #         next_clicked = 0 # go back to the beginning i.e. homepage
-
-#   # create your radio button with the index that we loaded
-#   # if(loged == False):
-#   # if next_clicked == 0 and loged == False:
-#   choice = st.sidebar.radio("go to",('Home','Login','New User','Predict','About'))
-#     # pkle.dump(new_choice.index(choice), open('next.p', 'wb'))
-
-
-#   # pickle the index associated with the value, to keep track if the radio button has been used
-#   # st.write(sloged)
-
-#   # finally get to whats on each page
-#   if choice == 'Home':
-#       st.write('this is home')
-#   elif choice == 'Login':
-#       login()
-#   elif choice == 'New User':
-#       signup()
-#   elif choice == 'About':
-#       st.write('About page')
-#   elif choice == 'Predict':
-#     if(session.loged):
-#       main()
-#     else:
-#       st.title("Reister or login to access this page")
-
-
-
-
-# session = SessionState.get(code='some c++ code')
-# a = st.radio("Edit or show", ['Edit', 'Show'], 0)
-# if a == 'Edit':
-#     session.code = st.text_input('Edit code', session.code)
-# else:
-#     st.write(session.code)
-
-
-
 
 # home()
 # About()
 change()
-
-
-
-# from streamlit.hashing import _CodeHasher
-
-# try:
-#     # Before Streamlit 0.65
-#     from streamlit.ReportThread import get_report_ctx
-#     from streamlit.server.Server import Server
-# except ModuleNotFoundError:
-#     # After Streamlit 0.65
-#     from streamlit.report_thread import get_report_ctx
-#     from streamlit.server.server import Server
-
-
-# def mai_n():
-#     state = _get_state()
-#     pages = {
-#         "Dashboard": page_dashboard,
-#         "Settings": page_settings,
-#     }
-
-#     st.sidebar.title(":floppy_disk: Page states")
-#     page = st.sidebar.radio("Select your page", tuple(pages.keys()))
-
-#     # Display the selected page with the session state
-#     pages[page](state)
-
-#     # Mandatory to avoid rollbacks with widgets, must be called at the end of your app
-#     state.sync()
-
-
-# def page_dashboard(state):
-#     st.title(":chart_with_upwards_trend: Dashboard page")
-#     display_state_values(state)
-
-
-# def page_settings(state):
-#     st.title(":wrench: Settings")
-#     display_state_values(state)
-
-#     st.write("---")
-#     options = ["Hello", "World", "Goodbye"]
-#     state.input = st.text_input("Set input value.", state.input or "")
-#     state.slider = st.slider("Set slider value.", 1, 10, state.slider)
-#     state.radio = st.radio("Set radio value.", options, options.index(state.radio) if state.radio else 0)
-#     state.checkbox = st.checkbox("Set checkbox value.", state.checkbox)
-#     state.selectbox = st.selectbox("Select value.", options, options.index(state.selectbox) if state.selectbox else 0)
-#     state.multiselect = st.multiselect("Select value(s).", options, state.multiselect)
-
-#     # Dynamic state assignments
-#     for i in range(3):
-#         key = f"State value {i}"
-#         state[key] = st.slider(f"Set value {i}", 1, 10, state[key])
-
-
-# def display_state_values(state):
-#     st.write("Input state:", state.input)
-#     st.write("Slider state:", state.slider)
-#     st.write("Radio state:", state.radio)
-#     st.write("Checkbox state:", state.checkbox)
-#     st.write("Selectbox state:", state.selectbox)
-#     st.write("Multiselect state:", state.multiselect)
-    
-#     for i in range(3):
-#         st.write(f"Value {i}:", state[f"State value {i}"])
-
-#     if st.button("Clear state"):
-#         state.clear()
-
-
-# class _SessionState:
-
-#     def __init__(self, session, hash_funcs):
-#         """Initialize SessionState instance."""
-#         self.__dict__["_state"] = {
-#             "data": {},
-#             "hash": None,
-#             "hasher": _CodeHasher(hash_funcs),
-#             "is_rerun": False,
-#             "session": session,
-#         }
-
-#     def __call__(self, **kwargs):
-#         """Initialize state data once."""
-#         for item, value in kwargs.items():
-#             if item not in self._state["data"]:
-#                 self._state["data"][item] = value
-
-#     def __getitem__(self, item):
-#         """Return a saved state value, None if item is undefined."""
-#         return self._state["data"].get(item, None)
-        
-#     def __getattr__(self, item):
-#         """Return a saved state value, None if item is undefined."""
-#         return self._state["data"].get(item, None)
-
-#     def __setitem__(self, item, value):
-#         """Set state value."""
-#         self._state["data"][item] = value
-
-#     def __setattr__(self, item, value):
-#         """Set state value."""
-#         self._state["data"][item] = value
-    
-#     def clear(self):
-#         """Clear session state and request a rerun."""
-#         self._state["data"].clear()
-#         self._state["session"].request_rerun()
-    
-#     def sync(self):
-#         """Rerun the app with all state values up to date from the beginning to fix rollbacks."""
-
-#         # Ensure to rerun only once to avoid infinite loops
-#         # caused by a constantly changing state value at each run.
-#         #
-#         # Example: state.value += 1
-#         if self._state["is_rerun"]:
-#             self._state["is_rerun"] = False
-        
-#         elif self._state["hash"] is not None:
-#             if self._state["hash"] != self._state["hasher"].to_bytes(self._state["data"], None):
-#                 self._state["is_rerun"] = True
-#                 self._state["session"].request_rerun()
-
-#         self._state["hash"] = self._state["hasher"].to_bytes(self._state["data"], None)
-
-
-# def _get_session():
-#     session_id = get_report_ctx().session_id
-#     session_info = Server.get_current()._get_session_info(session_id)
-
-#     if session_info is None:
-#         raise RuntimeError("Couldn't get your Streamlit Session object.")
-    
-#     return session_info.session
-
-
-# def _get_state(hash_funcs=None):
-#     session = _get_session()
-
-#     if not hasattr(session, "_custom_session_state"):
-#         session._custom_session_state = _SessionState(session, hash_funcs)
-
-#     return session._custom_session_state
-
-
-
-
-
-
-# mai_n()
