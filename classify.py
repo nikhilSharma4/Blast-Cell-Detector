@@ -1,4 +1,4 @@
-from tensorflow.keras.preprocessing.image import img_to_array, load_img,ImageDataGenerator
+# from tensorflow.keras.preprocessing.image import img_to_array, load_img,ImageDataGenerator
 import numpy as np
 import streamlit as st
 from keras.models import model_from_json
@@ -23,7 +23,7 @@ loaded_model = load_model()
       
 def predict(img):
     loaded_model = load_model()
-    image = img_to_array(img)
+    image = np.asarray(img)
     image = image/255.0
     image = np.reshape(image,[1,400,400,3])
 
